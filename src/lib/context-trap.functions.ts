@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { createClient } from "@supabase/supabase-js";
+import { publicSupabase } from "./supabase-public";
 
 export const TRAP_SOURCE_IDS = [
   "jira",
@@ -37,11 +37,7 @@ function publicClient() {
   if (!process.env.SUPABASE_URL || !process.env.SUPABASE_PUBLISHABLE_KEY) {
     return null;
   }
-  return createClient(
-    process.env.SUPABASE_URL,
-    process.env.SUPABASE_PUBLISHABLE_KEY,
-    { auth: { persistSession: false } },
-  );
+  return publicSupabase(process.env.SUPABASE_URL, process.env.SUPABASE_PUBLISHABLE_KEY);
 }
 
 export const recordContextTrap = createServerFn({ method: "POST" })

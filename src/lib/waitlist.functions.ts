@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { createClient } from "@supabase/supabase-js";
+import { publicSupabase } from "./supabase-public";
 
 const LINKEDIN_RE =
   /^https?:\/\/(www\.)?linkedin\.com\/(in|company)\/[A-Za-z0-9_\-%-]+\/?$/;
@@ -23,9 +23,7 @@ export const joinWaitlist = createServerFn({ method: "POST" })
         "Waitlist backend not configured: set SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY.",
       );
     }
-    const supabase = createClient(url, publishableKey, {
-      auth: { persistSession: false },
-    });
+    const supabase = publicSupabase(url, publishableKey);
     const email = data.email.trim().toLowerCase();
     const linkedin_url = data.linkedin_url.trim();
     const name = data.name?.trim() || null;
