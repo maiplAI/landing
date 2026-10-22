@@ -3,6 +3,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { joinWaitlist } from "@/lib/waitlist.functions";
 import logoAsset from "@/assets/maipl-logo.png";
+import { PLATFORM_URL } from "@/lib/platform";
 
 export const Route = createFileRoute("/waitlist")({
   component: WaitlistPage,
@@ -154,6 +155,12 @@ function WaitlistPage() {
           </form>
 
           <p className="mt-5 text-center text-xs font-mono text-muted-foreground">
+            Already approved?{" "}
+            <a href={`${PLATFORM_URL}/login`} className="hover:text-foreground underline underline-offset-4">
+              Sign in →
+            </a>
+          </p>
+          <p className="mt-3 text-center text-xs font-mono text-muted-foreground">
             <Link to="/security" className="hover:text-foreground underline underline-offset-4">
               security &amp; data handling
             </Link>

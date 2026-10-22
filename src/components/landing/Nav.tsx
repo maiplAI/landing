@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import logoAsset from "@/assets/maipl-logo.png";
+import { PLATFORM_URL } from "@/lib/platform";
 
 export function Nav() {
   return (
@@ -14,6 +15,12 @@ export function Nav() {
             <Link to="/use-cases" className="hover:text-foreground transition-colors">Use cases</Link>
             <Link to="/pricing" className="hover:text-foreground transition-colors">Pricing</Link>
           </nav>
+          <a
+            href={`${PLATFORM_URL}/login`}
+            className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Sign in
+          </a>
           <Link
             to="/waitlist"
             className="inline-flex items-center gap-1.5 h-9 px-4 rounded-md bg-primary text-primary-foreground text-xs font-mono font-medium hover:opacity-90 transition-opacity shadow-signal"
